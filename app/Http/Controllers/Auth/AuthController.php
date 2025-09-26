@@ -13,6 +13,7 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'role' => 'required|in:admin,penghuni',
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -33,7 +34,7 @@ class AuthController extends Controller
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.'
-        ])->onlyInput('email');
+        ])->onlyInput('email', 'role');
     }
 
     public function logout(Request $request)
