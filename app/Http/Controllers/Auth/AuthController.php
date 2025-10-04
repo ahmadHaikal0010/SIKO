@@ -11,12 +11,23 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, true)) {
             $user = Auth::user();
+
+            $durationInMinutes = 30 * 24 * 60;
+
+            if ($user->role === 'admin') {
+                $durationInMinutes = 7 * 24 * 60;
+            }
+
+            Auth::setRememberDuration($durationInMinutes);
+
+            $request->session()->regenerate();
+
             switch ($user->role) {
                 case "admin":
                     return redirect()->intended(route('admin.dashboard'));
@@ -26,13 +37,13 @@ class AuthController extends Controller
                     break;
                 default:
                     Auth::logout();
-                    return redirect()->route('loginform')->withErrors(['role' => 'Unauthorized role.']);
+                    return redirect()->route('loginform')->withErrors(['role' => 'Akses ditolak.']);
                     break;
             }
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.'
+            'email' => 'Email atau password yang Anda masukkan salah.'
         ])->onlyInput('email');
     }
 
