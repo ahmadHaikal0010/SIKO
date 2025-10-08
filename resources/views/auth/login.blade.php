@@ -193,6 +193,11 @@
             <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
             Log In with Google
         </button>
+        <div class="text-center mt-3">
+            <a class="forgot-link" href="{{ route('register') }}">
+                Belum punya akun? Register
+            </a>
+        </div>
     </div>
 
     <!-- Bootstrap Icons CDN -->
