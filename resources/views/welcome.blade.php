@@ -205,21 +205,12 @@
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 19 Tipe A</div>
-                        <div class="text-muted small">WiFi • Kasur • Dapur • WC dalam kamar</div>
-                        <div class="room-price">Rp 14.000.000 / tahun</div>
-                      </div>
+
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 07 Tipe B</div>
-                        <div class="text-muted small">WiFi • Kasur • Dapur • WC dalam kamar</div>
-                        <div class="room-price">Rp 9.000.000 / tahun</div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -231,21 +222,13 @@
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 02 Tipe C</div>
-                        <div class="text-muted small">WiFi • Lemari • AC • Balkon</div>
-                        <div class="room-price">Rp 10.500.000 / tahun</div>
-                      </div>
+
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1585559604903-4c07aa7d8e22?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 11 Tipe D</div>
-                        <div class="text-muted small">WiFi • AC • Meja Belajar • Dapur</div>
-                        <div class="room-price">Rp 12.000.000 / tahun</div>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -257,21 +240,13 @@
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 21 Tipe E</div>
-                        <div class="text-muted small">WiFi • TV • Balkon • Dapur Bersama</div>
-                        <div class="room-price">Rp 15.000.000 / tahun</div>
-                      </div>
+
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="room-card">
                       <img src="https://images.unsplash.com/photo-1616593962303-5df9d8f51e3c?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
-                      <div class="room-body">
-                        <div class="room-title">Kamar 05 Tipe F</div>
-                        <div class="text-muted small">WiFi • Lemari • Kamar Mandi Dalam</div>
-                        <div class="room-price">Rp 11.000.000 / tahun</div>
-                      </div>
+
                     </div>
                   </div>
                 </div>
@@ -315,8 +290,8 @@
     <!-- Rooms -->
     <section class="container mt-5">
         <div class="text-center mb-4">
-            <h3 class="fw-bold">Rooms & Facilities</h3>
-            <p class="text-muted">Temukan tipe kamar terbaik sesuai kebutuhan dan budget Anda.</p>
+            <h3 class="fw-bold">KOS Hj.Nasrul</h3>
+            <p class="text-muted">Temukan tempat kos terbaik dan terdekatmu </p>
         </div>
         <div class="row gy-4">
             @foreach ([1,2,3] as $i)
@@ -324,8 +299,8 @@
                 <div class="room-card">
                     <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80" class="room-img" alt="">
                     <div class="room-body">
-                        <div class="room-title">Kamar {{ $i }} Tipe A</div>
-                        <div class="text-muted small">WiFi • Kasur • Dapur • WC dalam kamar</div>
+                        <div class="room-title">Kos {{ $i }}</div>
+                        <div class="text-muted small">Alamat kos blablablablablablablablablablabla</div>
                         <div class="room-price">Rp 14.000.000 / tahun</div>
                     </div>
                 </div>
@@ -335,9 +310,73 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        © 2025 SIKO Kost Eksklusif - All Rights Reserved
-    </footer>
+    <footer class="footer text-light position-relative"
+        style="background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;">
+
+  <!-- Overlay gradasi sesuai warna khas SIKO -->
+  <div class="position-absolute top-0 start-0 w-100 h-100"
+       style="background: linear-gradient(135deg, rgba(49,94,91,0.92), rgba(64,111,107,0.9));"></div>
+
+  <div class="container py-5 position-relative">
+    <div class="row text-center text-md-start gy-4 align-items-start">
+
+      <!-- Brand -->
+      <div class="col-md-4">
+        <h5 class="fw-bold text-white mb-3">SIKO Kost Eksklusif</h5>
+        <p class="small text-light mb-0 opacity-85">
+          Hunian modern dan nyaman di Padang dengan fasilitas lengkap serta lingkungan aman dan strategis.
+        </p>
+      </div>
+
+      <!-- Kontak -->
+      <div class="col-md-4">
+        <h6 class="fw-semibold text-white mb-3">Hubungi Kami</h6>
+        <div class="d-flex flex-column gap-2">
+          <a href="https://wa.me/6281234567890" target="_blank"
+             class="text-decoration-none text-light d-flex align-items-center gap-2 opacity-85 hover-bright">
+            <i class="bi bi-whatsapp fs-5 text-success"></i> WhatsApp
+          </a>
+          <a href="https://instagram.com/nama_kos" target="_blank"
+             class="text-decoration-none text-light d-flex align-items-center gap-2 opacity-85 hover-bright">
+            <i class="bi bi-instagram fs-5 text-danger"></i> Instagram
+          </a>
+          <a href="mailto:siko@example.com"
+             class="text-decoration-none text-light d-flex align-items-center gap-2 opacity-85 hover-bright">
+            <i class="bi bi-envelope fs-5 text-warning"></i> Email
+          </a>
+        </div>
+      </div>
+
+      <!-- Alamat -->
+      <div class="col-md-4">
+        <h6 class="fw-semibold text-white mb-3">Alamat</h6>
+        <p class="small mb-1 text-light opacity-85">Jl. Mawar No. 12, Padang</p>
+        <p class="small mb-1 text-light opacity-85">Dekat Universitas Andalas</p>
+        <p class="small mb-0 text-light opacity-85">Buka setiap hari 08.00 – 21.00</p>
+      </div>
+    </div>
+
+    <hr class="border-light my-4 opacity-25">
+
+    <!-- Copyright -->
+    <div class="text-center">
+      <p class="small mb-0 text-light opacity-75">
+        &copy; {{ date('Y') }} <strong>SIKO</strong> • Kost Eksklusif di Padang • Dibuat dengan
+        <i class="bi bi-heart-fill text-danger"></i> oleh Tim SIKO
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* Tambahan gaya kecil untuk efek hover yang lembut */
+  .hover-bright:hover {
+    opacity: 1 !important;
+    transform: translateX(4px);
+    transition: all .3s ease;
+  }
+</style>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
