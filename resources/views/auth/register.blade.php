@@ -1,160 +1,208 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Register • SIKO</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            min-height: 100vh;
-            background: radial-gradient(circle at 20% 20%, #7fd1e8 0%, #3a7bd5 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Poppins', sans-serif;
-        }
-        .register-card {
-            background: #eaf6fa;
-            border-radius: 18px;
-            box-shadow: 0 12px 40px 0 rgba(31,38,135,0.18);
-            padding: 40px 32px 32px 32px;
-            width: 420px;
-            max-width: 95vw;
-        }
-        .register-title {
-            font-size: 2.1rem;
-            font-weight: 700;
-            color: #3686d6;
-            text-align: center;
-            margin-bottom: 32px;
-            letter-spacing: 1px;
-            background: #bfe2f7;
-            border-radius: 12px;
-            box-shadow: 0 6px 16px #bfe2f7;
-            padding: 14px 0 10px 0;
-            text-shadow: 1px 2px 6px #bfe2f7;
-        }
-        .form-label {
-            font-weight: 500;
-            color: #3686d6;
-            margin-bottom: 6px;
-            font-size: 1.08em;
-            display: block;
-        }
-        .form-group {
-            margin-bottom: 24px;
-        }
-        .form-control {
-            border-radius: 10px;
-            border: 2px solid #bfe2f7;
-            font-size: 1.1em;
-            padding: 14px 12px;
-            background: #eaf6fa;
-            box-shadow: none;
-        }
-        .form-control:focus {
-            border-color: #3686d6;
-            box-shadow: 0 0 8px #7fd1e8;
-            background: #eaf6fa;
-        }
-        .btn-register {
-            background: #2ca6c4;
-            color: #fff;
-            font-weight: 700;
-            border: none;
-            border-radius: 12px;
-            padding: 14px 0;
-            font-size: 1.15em;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            width: 100%;
-            transition: background 0.2s;
-            box-shadow: 0 4px 16px #bfe2f7;
-        }
-        .btn-register:hover {
-            background: #3686d6;
-        }
-        .login-link {
-            color: #3686d6;
-            text-decoration: none;
-            font-size: 0.98em;
-            font-weight: 500;
-        }
-        .login-link:hover {
-            text-decoration: underline;
-            color: #2ca6c4;
-        }
-        .error-message {
-            color: #d9534f;
-            font-size: 0.98em;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-        @media (max-width: 500px) {
-            .register-card { padding: 18px 4vw 18px 4vw; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register • SIKO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #dfe7e7 0%, #b2c5c9 40%, #7a8f94 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .register-wrapper {
+      position: relative;
+      background: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(14px);
+      border-radius: 14px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+      padding: 70px 40px 45px;
+      width: 400px;
+      max-width: 90vw;
+      text-align: center;
+      transform: translateY(-20px);
+      animation: slideFade 0.8s forwards;
+    }
+
+    @keyframes slideFade {
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .profile-icon {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2f4f4f;
+      color: #fff;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-icon:hover {
+      transform: translateX(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .input-group {
+      background: rgba(255, 255, 255, 0.4);
+      border-radius: 6px;
+      margin-bottom: 18px;
+    }
+
+    .input-group-text {
+      background: transparent;
+      border: none;
+      color: #2b3a3a;
+      padding-left: 14px;
+      font-size: 1.2rem;
+    }
+
+    .form-control {
+      background: transparent;
+      border: none;
+      padding: 12px 14px;
+      color: #2b3a3a;
+      font-size: 1rem;
+    }
+
+    .form-control:focus {
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-register {
+      width: 100%;
+      background-color: #2f4f4f;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      padding: 12px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s ease;
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+
+    .btn-register:hover {
+      background-color: #263f3f;
+      transform: scale(1.03);
+    }
+
+    /* Tombol login dengan efek garis animasi */
+    .btn-login {
+      position: relative;
+      display: inline-block;
+      padding: 10px 0;
+      width: 100%;
+      color: #2f4f4f;
+      text-decoration: none;
+      font-weight: 500;
+      overflow: hidden;
+      border-radius: 25px;
+      transition: color 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .btn-login::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      height: 100%;
+      background-color: #2f4f4f;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease;
+      border-radius: 25px;
+    }
+
+    .btn-login:hover {
+      color: #fff;
+    }
+
+    .btn-login:hover::before {
+      width: 100%;
+    }
+
+    .error-message {
+      color: #d9534f;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .register-wrapper {
+        padding: 60px 25px 35px;
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="register-card">
-        <div class="register-title">REGISTER</div>
-
-        <!-- Error Message -->
-        @if ($errors->any())
-            <div class="error-message">
-                {{ $errors->first() }}
-            </div>
-        @endif
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <!-- Name -->
-            <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input id="name" class="form-control" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" />
-                @if ($errors->has('name'))
-                    <div class="error-message">{{ $errors->first('name') }}</div>
-                @endif
-            </div>
-
-            <!-- Email Address -->
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input id="email" class="form-control" type="email" name="email" value="{{ old('email') }}" required autocomplete="username" />
-                @if ($errors->has('email'))
-                    <div class="error-message">{{ $errors->first('email') }}</div>
-                @endif
-            </div>
-
-            <!-- Password -->
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
-                @if ($errors->has('password'))
-                    <div class="error-message">{{ $errors->first('password') }}</div>
-                @endif
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="form-group">
-                <label for="password_confirmation" class="form-label">Confirm Password</label>
-                <input id="password_confirmation" class="form-control" type="password" name="password_confirmation" required autocomplete="new-password" />
-                @if ($errors->has('password_confirmation'))
-                    <div class="error-message">{{ $errors->first('password_confirmation') }}</div>
-                @endif
-            </div>
-
-            <button type="submit" class="btn btn-register">Register</button>
-        </form>
-
-        <div class="text-center mt-3">
-            <a class="login-link" href="{{ route('login') }}">
-                Already registered?
-            </a>
-        </div>
+  <div class="register-wrapper fade-in">
+    <div class="profile-icon">
+      <i class="bi bi-person-plus"></i>
     </div>
+
+    <!-- Error Message -->
+    @if ($errors->any())
+      <div class="error-message">{{ $errors->first() }}</div>
+    @endif
+
+    <form method="POST" action="{{ route('register') }}">
+      @csrf
+
+      <div class="input-group mt-3">
+        <span class="input-group-text"><i class="bi bi-person"></i></span>
+        <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock"></i></span>
+        <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" placeholder="Confirm Password" required>
+      </div>
+
+      <button type="submit" class="btn btn-register">Register</button>
+
+      <a href="{{ route('login') }}" class="btn-login">Back to Login</a>
+    </form>
+  </div>
 </body>
 </html>
