@@ -15,7 +15,7 @@
 
         /* Navbar */
         .navbar {
-            background-color: #315e5b;
+            background-color: #fff;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
@@ -23,7 +23,7 @@
         }
 
         .navbar-brand {
-            color: white !important;
+            color: black !important;
             font-weight: 600;
             letter-spacing: 0.5px;
         }
@@ -140,7 +140,7 @@
             <a href="/" class="landing-btn">
                 <i class="bi bi-arrow-left-circle"></i> Landing Page
             </a>
-            <a class="navbar-brand ms-2" href="/login">SIKO Admin</a>
+            <a class="navbar-brand ms-2" href="/">SIKO Admin</a>
         </div>
         <form action="{{ route('logout') }}" method="post">
             @csrf

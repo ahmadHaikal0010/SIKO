@@ -45,10 +45,11 @@
         .btn-login {
             background: var(--primary);
             color: #fff;
-            border-radius: 8px;
+            border-radius: 30px;
             padding: 8px 28px;
             font-weight: 600;
             border: none;
+            text-decoration: none;
         }
 
         .btn-login:hover {
@@ -194,7 +195,12 @@
                     <li class="nav-item"><a href="#" class="nav-link">Location</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Testimonial</a></li>
-                    <li class="nav-item ms-2"><a href="{{ route('login') }}" class="btn-login">Login</a></li>
+                    @auth
+                        <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a>
+                        </li>
+                    @else
+                        <li class="nav-item ms-2"><a href="{{ route('login') }}" class="btn-login">Login</a></li>
+                    @endauth
                 </ul>
             </div>
         </div>
