@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('total_kamar');
             $table->string('harga_kost');
+            $table->string('kategori');
             $table->timestamps();
         });
     }

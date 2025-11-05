@@ -30,5 +30,7 @@ require __DIR__ . '/auth.php';
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/informasi-kost', [KostController::class, 'index'])->name('kost.index');
+    Route::get('/kost', [KostController::class, 'index'])->name('kost.index');
+    Route::get('/kost/create', [KostController::class, 'create'])->name('kost.create');
+    Route::post('/kost', [KostController::class, 'store'])->name('kost.store');
 });
