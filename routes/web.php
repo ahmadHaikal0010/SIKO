@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KostController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\IsAdmin;
@@ -12,10 +13,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Tenant Routes
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified', IsPenghuni::class])->name('dashboard');
 
+// Authenticated User Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -27,4 +30,5 @@ require __DIR__ . '/auth.php';
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/informasi-kost', [KostController::class, 'index'])->name('kost.index');
 });
