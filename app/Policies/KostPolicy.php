@@ -45,7 +45,7 @@ class KostPolicy
      */
     public function delete(User $user, Kost $kost): bool
     {
-        return false;
+        return $user->role === 'admin';
     }
 
     /**
