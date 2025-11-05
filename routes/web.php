@@ -33,4 +33,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::get('/kost', [KostController::class, 'index'])->name('kost.index');
     Route::get('/kost/create', [KostController::class, 'create'])->name('kost.create');
     Route::post('/kost', [KostController::class, 'store'])->name('kost.store');
+    Route::get('/kost/{kost}/edit', [KostController::class, 'edit'])->name('kost.edit');
+    Route::put('/kost/{kost}', [KostController::class, 'update'])->name('kost.update');
 });

@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Kost;
 
+use App\Models\Kost;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateKostRequest extends FormRequest
 {
@@ -11,7 +13,8 @@ class UpdateKostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $kost = $this->route('kost') ?? $this->route('id');
+        return Auth::user()->can('update', $kost);
     }
 
     /**
@@ -22,7 +25,13 @@ class UpdateKostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nama_kost' => 'sometimes|required|string|max:255',
+            'deskripsi' => 'sometimes|nullable|string',
+            'fasilitas' => 'sometimes|nullable|string',
+            'alamat' => 'sometimes|required|string|max:500',
+            'total_kamar' => 'sometimes|required|integer|min:1',
+            'harga_kost' => 'sometimes|required|numeric|min:0',
+            'kategori' => 'sometimes|required',
         ];
     }
 }

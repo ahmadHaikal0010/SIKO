@@ -37,7 +37,7 @@ class KostPolicy
      */
     public function update(User $user, Kost $kost): bool
     {
-        return false;
+        return $user->role === 'admin';
     }
 
     /**
