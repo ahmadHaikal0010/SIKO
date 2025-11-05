@@ -45,4 +45,10 @@ class KostController extends Controller
         $this->kostService->update($kost, $request->validated());
         return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil diperbarui.');
     }
+
+    public function destroy(Kost $kost)
+    {
+        $this->kostService->delete($kost);
+        return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil dihapus.');
+    }
 }
