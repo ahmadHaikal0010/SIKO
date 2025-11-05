@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Kost\StoreKostRequest;
+use App\Http\Requests\Kost\UpdateKostRequest;
 use App\Models\Kost;
 use App\Services\KostService;
 use Illuminate\Http\Request;
@@ -32,5 +33,16 @@ class KostController extends Controller
     {
         $this->kostService->create($request->validated());
         return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil ditambahkan.');
+    }
+
+    public function edit(Kost $kost)
+    {
+        return view('admin.kost.edit', compact('kost'));
+    }
+
+    public function update(UpdateKostRequest $request, Kost $kost)
+    {
+        $this->kostService->update($kost, $request->validated());
+        return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil diperbarui.');
     }
 }

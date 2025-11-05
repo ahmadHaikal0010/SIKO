@@ -15,4 +15,9 @@ class KostService
     {
         return Kost::create($data);
     }
+
+    public function update(Kost $kost, array $data): bool
+    {
+        return $kost->update($data);
+    }
 }
