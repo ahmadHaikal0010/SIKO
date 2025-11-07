@@ -7,7 +7,6 @@ use App\Http\Requests\Kost\StoreKostRequest;
 use App\Http\Requests\Kost\UpdateKostRequest;
 use App\Models\Kost;
 use App\Services\KostService;
-use Illuminate\Http\Request;
 
 class KostController extends Controller
 {
