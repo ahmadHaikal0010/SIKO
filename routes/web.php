@@ -2,11 +2,10 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KostController;
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsPenghuni;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -36,4 +35,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::get('/kost/{kost}/edit', [KostController::class, 'edit'])->name('kost.edit');
     Route::put('/kost/{kost}', [KostController::class, 'update'])->name('kost.update');
     Route::delete('/kost/{kost}', [KostController::class, 'destroy'])->name('kost.destroy');
+    Route::resource('/room', RoomController::class);
 });

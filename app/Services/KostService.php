@@ -8,7 +8,7 @@ class KostService
 {
     public function getAll()
     {
-        return Kost::latest()->paginate(10);
+        return Kost::with('rooms')->latest()->paginate(10);
     }
 
     public function create(array $data): Kost
