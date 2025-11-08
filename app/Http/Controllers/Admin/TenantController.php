@@ -58,7 +58,10 @@ class TenantController extends Controller
      */
     public function edit(Tenant $tenant)
     {
-        return view('admin.tenant.edit', compact('tenant'));
+        $tenant->load(['user', 'room']);
+        $users = $this->tenantService->getUsers();
+        $rooms = $this->tenantService->getRooms();
+        return view('admin.tenant.edit', compact('tenant', 'users', 'rooms'));
     }
 
     /**

@@ -32,4 +32,9 @@ class Tenant extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

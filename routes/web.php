@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KostController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\TenantController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsPenghuni;
@@ -30,12 +31,8 @@ require __DIR__ . '/auth.php';
 // Admin Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/kost', [KostController::class, 'index'])->name('kost.index');
-    Route::get('/kost/create', [KostController::class, 'create'])->name('kost.create');
-    Route::post('/kost', [KostController::class, 'store'])->name('kost.store');
-    Route::get('/kost/{kost}/edit', [KostController::class, 'edit'])->name('kost.edit');
-    Route::put('/kost/{kost}', [KostController::class, 'update'])->name('kost.update');
-    Route::delete('/kost/{kost}', [KostController::class, 'destroy'])->name('kost.destroy');
+    Route::resource('/kost', KostController::class);
     Route::resource('/room', RoomController::class);
     Route::resource('/tenant', TenantController::class);
+    Route::resource('/transaction', TransactionController::class);
 });
