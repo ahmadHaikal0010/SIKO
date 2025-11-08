@@ -2,18 +2,20 @@
 
 namespace App\Services;
 
+use App\Models\Room;
 use App\Models\Tenant;
+use App\Models\User;
 
 class TenantService
 {
     public function getAll()
     {
-        return Tenant::with('kost', 'room')->latest()->paginate(10);
+        return Tenant::with('room.kost')->latest()->paginate(10);
     }
 
     public function read(Tenant $tenant)
     {
-        return $tenant->load('kost', 'room');
+        return $tenant->load('room.kost');
     }
 
     public function create(array $data)
@@ -30,5 +32,15 @@ class TenantService
     public function delete(Tenant $tenant)
     {
         $tenant->delete();
+    }
+
+    public function getUsers()
+    {
+        return User::all();
+    }
+
+    public function getRooms()
+    {
+        return Room::all();
     }
 }

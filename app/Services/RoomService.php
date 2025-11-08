@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Kost;
 use App\Models\Room;
 
 class RoomService
@@ -30,5 +31,10 @@ class RoomService
     public function delete(Room $room): void
     {
         $room->delete();
+    }
+
+    public function getKosts()
+    {
+        return Kost::all();
     }
 }

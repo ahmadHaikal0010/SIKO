@@ -57,7 +57,9 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        return view('admin.room.edit', compact('room'));
+        $room->load('kost');
+        $kosts = $this->roomService->getKosts();
+        return view('admin.room.edit', compact('room', 'kosts'));
     }
 
     /**
