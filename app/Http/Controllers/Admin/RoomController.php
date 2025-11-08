@@ -7,6 +7,7 @@ use App\Http\Requests\Room\StoreRoomRequest;
 use App\Http\Requests\Room\UpdateRoomRequest;
 use App\Models\Room;
 use App\Services\RoomService;
+use Illuminate\Support\Facades\Gate;
 
 class RoomController extends Controller
 {
@@ -76,6 +77,7 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
+        Gate::authorize('delete', $room);
         $this->roomService->delete($room);
         return redirect()->route('admin.room.index')->with('success', 'Data Kamar berhasil dihapus.');
     }

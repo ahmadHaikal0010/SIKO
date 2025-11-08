@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Kost;
+use App\Models\Room;
 use App\Models\Tenant;
 use App\Models\Transaction;
+use App\Policies\KostPolicy;
+use App\Policies\RoomPolicy;
 use App\Policies\TenantPolicy;
 use App\Policies\TransactionPolicy;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::policies(Kost::class, KostPolicy::class);
+        Gate::policies(Room::class, RoomPolicy::class);
         Gate::policies(Tenant::class, TenantPolicy::class);
         Gate::policies(Transaction::class, TransactionPolicy::class);
     }
