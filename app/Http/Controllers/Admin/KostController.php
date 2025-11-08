@@ -7,6 +7,7 @@ use App\Http\Requests\Kost\StoreKostRequest;
 use App\Http\Requests\Kost\UpdateKostRequest;
 use App\Models\Kost;
 use App\Services\KostService;
+use Illuminate\Support\Facades\Gate;
 
 class KostController extends Controller
 {
@@ -47,6 +48,7 @@ class KostController extends Controller
 
     public function destroy(Kost $kost)
     {
+        Gate::authorize('delete', $kost);
         $this->kostService->delete($kost);
         return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil dihapus.');
     }
