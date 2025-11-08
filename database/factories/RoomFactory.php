@@ -20,7 +20,7 @@ class RoomFactory extends Factory
         return [
             'kost_id' => Kost::factory(),
             'nomor_kamar' => $this->faker->numberBetween(1, 100),
-            'status' => $this->faker->randomElement(['available', 'occupied', 'maintenance']),
+            'status' => $this->faker->randomElement(['available', 'occupied']),
         ];
     }
 }
