@@ -32,7 +32,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        return view('admin.room.create');
+        $kosts = $this->roomService->getKosts();
+        return view('admin.room.create', compact('kosts'));
     }
 
     /**
@@ -58,7 +59,7 @@ class RoomController extends Controller
      */
     public function edit(Room $room)
     {
-        $room->load('kost');
+        $room = $this->roomService->read($room);
         $kosts = $this->roomService->getKosts();
         return view('admin.room.edit', compact('room', 'kosts'));
     }
