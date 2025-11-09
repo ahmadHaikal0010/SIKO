@@ -33,7 +33,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('admin.transaction.create');
+        $tenants = $this->transactionService->getTenants();
+        return view('admin.transaction.create', compact('tenants'));
     }
 
     /**
@@ -59,7 +60,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        $transaction->load('tenant');
+        $transaction = $this->transactionService->read($transaction);
         $tenants = $this->transactionService->getTenants();
         return view('admin.transaction.edit', compact('transaction', 'tenants'));
     }

@@ -35,6 +35,11 @@ class KostController extends Controller
         return redirect()->route('admin.kost.index')->with('success', 'Data kost berhasil ditambahkan.');
     }
 
+    public function show(Kost $kost)
+    {
+        return view('admin.kost.show', compact('kost'));
+    }
+
     public function edit(Kost $kost)
     {
         return view('admin.kost.edit', compact('kost'));

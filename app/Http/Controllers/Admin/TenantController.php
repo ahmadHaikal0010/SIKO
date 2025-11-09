@@ -32,7 +32,9 @@ class TenantController extends Controller
      */
     public function create()
     {
-        return view('admin.tenant.create');
+        $users = $this->tenantService->getUsers();
+        $rooms = $this->tenantService->getRooms();
+        return view('admin.tenant.create', compact('users', 'rooms'));
     }
 
     /**
@@ -58,7 +60,7 @@ class TenantController extends Controller
      */
     public function edit(Tenant $tenant)
     {
-        $tenant->load(['user', 'room']);
+        $tenant = $this->tenantService->read($tenant);
         $users = $this->tenantService->getUsers();
         $rooms = $this->tenantService->getRooms();
         return view('admin.tenant.edit', compact('tenant', 'users', 'rooms'));

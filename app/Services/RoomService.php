@@ -14,7 +14,7 @@ class RoomService
 
     public function read(Room $room)
     {
-        return $room;
+        return $room->load('kost');
     }
 
     public function create(array $data): Room
