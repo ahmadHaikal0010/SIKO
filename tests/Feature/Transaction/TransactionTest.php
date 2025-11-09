@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Room;
+namespace Tests\Feature\Transaction;
 
 use App\Models\User;
 use App\Models\Kost;

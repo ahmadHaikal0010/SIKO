@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KostController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\TenantController;
@@ -35,4 +36,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::resource('/room', RoomController::class);
     Route::resource('/tenant', TenantController::class);
     Route::resource('/transaction', TransactionController::class);
+    Route::resource('/gallery', GalleryController::class);
 });
