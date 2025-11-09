@@ -2,10 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Gallery;
 use App\Models\Kost;
 use App\Models\Room;
 use App\Models\Tenant;
 use App\Models\Transaction;
+use App\Policies\GalleryPolicy;
 use App\Policies\KostPolicy;
 use App\Policies\RoomPolicy;
 use App\Policies\TenantPolicy;
@@ -32,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(Room::class, RoomPolicy::class);
         Gate::policies(Tenant::class, TenantPolicy::class);
         Gate::policies(Transaction::class, TransactionPolicy::class);
+        Gate::policies(Gallery::class, GalleryPolicy::class);
     }
 }

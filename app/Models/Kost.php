@@ -24,4 +24,9 @@ class Kost extends Model
     {
         return $this->hasMany(Room::class, 'kosts_id');
     }
+
+    public function galleries(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
+    }
 }
