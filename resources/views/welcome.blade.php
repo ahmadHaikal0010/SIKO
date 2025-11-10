@@ -206,35 +206,61 @@
         </div>
     </nav>
 
-    <!-- Hero Section with Carousel -->
-    <section class="hero-section">
-        <div class="container">
-            <div class="row align-items-center gy-4">
-                <div class="col-lg-6">
-                    <span class="badge bg-white text-dark mb-2" style="font-size:1em;">The Best Online Kos in The
-                        World!</span>
-                    <h1 class="hero-title">Kost Eksklusif dengan<br>Fasilitas Paling Lengkap di Padang</h1>
-                    <p class="hero-desc">
-                        Temukan pengalaman tinggal yang nyaman dan eksklusif dengan fasilitas modern serta lingkungan
-                        yang aman dan strategis.
-                    </p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a href="#" class="btn-primary-custom">Booking Now</a>
-                        <a href="#" class="btn-outline-custom">View All Kamar</a>
-                    </div>
+   <!-- Hero Section with Carousel -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-6">
+                <span class="badge bg-white text-dark mb-2" style="font-size:1em;">The Best Online Kos in The
+                    World!</span>
+                <h1 class="hero-title">Kost Eksklusif dengan<br>Fasilitas Paling Lengkap di Padang</h1>
+                <p class="hero-desc">
+                    Temukan pengalaman tinggal yang nyaman dan eksklusif dengan fasilitas modern serta lingkungan
+                    yang aman dan strategis.
+                </p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="#" class="btn-primary-custom">Booking Now</a>
+                    <a href="#" class="btn-outline-custom">View All Kamar</a>
                 </div>
+            </div>
 
-                <div class="col-lg-6">
-                    <div id="heroRoomCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                            <!-- Slide 1 -->
+            <div class="col-lg-6">
+                <div id="heroRoomCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        @php
+                            // Ambil galeri dari kost pertama atau semua kost
+                            $allGalleries = \App\Models\Gallery::limit(20)->get();
+                            $chunked = $allGalleries->chunk(2); // Bagi 2 foto per slide
+                        @endphp
+
+                        @forelse ($chunked as $index => $pair)
+                            <div class="carousel-item @if($index === 0) active @endif">
+                                <div class="row g-3">
+                                    @foreach ($pair as $gallery)
+                                        <div class="col-md-6">
+                                            <div class="room-card">
+                                                <img src="{{ $gallery->image_url }}"
+                                                     class="room-img"
+                                                     alt="{{ $gallery->title ?? 'Galeri' }}"
+                                                     style="object-fit: cover;">
+                                                @isset($gallery->title)
+                                                    <div class="room-body">
+                                                        <div class="room-title">{{ $gallery->title }}</div>
+                                                    </div>
+                                                @endisset
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @empty
+                            {{-- Fallback jika tidak ada galeri --}}
                             <div class="carousel-item active">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="room-card">
                                             <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
                                                 class="room-img" alt="">
-
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -245,47 +271,23 @@
                                     </div>
                                 </div>
                             </div>
+                        @endforelse
+                    </div>
 
-                            <!-- Slide 2 -->
-                            <div class="carousel-item">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1585559604903-4c07aa7d8e22?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Slide 3 -->
-                            <div class="carousel-item">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1627308595229-7830a5c91f9f?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1616593962303-5df9d8f51e3c?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Carousel controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroRoomCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroRoomCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
                         <!-- Carousel controls -->
                         <button class="carousel-control-prev" type="button" data-bs-target="#heroRoomCarousel"
@@ -325,26 +327,31 @@
 
     <!-- Rooms -->
     <section class="container mt-5">
-        <div class="text-center mb-4">
-            <h3 class="fw-bold">KOS Hj.Nasrul</h3>
-            <p class="text-muted">Temukan tempat kos terbaik dan terdekatmu </p>
-        </div>
-        <div class="row gy-4">
-            @foreach ([1, 2, 3] as $i)
-                <div class="col-12 col-md-4">
-                    <div class="room-card">
-                        <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=800&q=80"
-                            class="room-img" alt="">
-                        <div class="room-body">
-                            <div class="room-title">Kos {{ $i }}</div>
-                            <div class="text-muted small">Alamat kos blablablablablablablablablablabla</div>
-                            <div class="room-price">Rp 14.000.000 / tahun</div>
-                        </div>
-                    </div>
+    <div class="text-center mb-4">
+        <h3 class="fw-bold">KOS Mitra</h3>
+        <p class="text-muted">Temukan tempat kos terbaik dan terdekatmu </p>
+    </div>
+
+    <div class="row gy-4">
+        @foreach ($kosts as $k)
+        <div class="col-12 col-md-4">
+            <a href="{{ route('kost.show', $k->id) }}" class="text-decoration-none text-dark">
+            <div class="room-card">
+                <img src="{{ $k->cover_url }}" class="room-img" alt="Cover {{ $k->nama_kost }}">
+                <div class="room-body">
+                <div class="room-title">{{ $k->nama_kost }}</div>
+                <div class="text-muted small">{{ \Illuminate\Support\Str::limit($k->alamat ?? '-', 60) }}</div>
+                @if(!empty($k->harga_kost))
+                    <div class="room-price">Rp {{ number_format($k->harga_kost,0,',','.') }} / tahun</div>
+                @endif
                 </div>
-            @endforeach
+            </div>
+            </a>
         </div>
+        @endforeach
+    </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer text-light position-relative"
@@ -369,11 +376,11 @@
                 <div class="col-md-4">
                     <h6 class="fw-semibold text-white mb-3">Hubungi Kami</h6>
                     <div class="d-flex flex-column gap-2">
-                        <a href="https://wa.me/6281234567890" target="_blank"
+                        <a href="https://wa.me/6282183539946" target="_blank"
                             class="text-decoration-none text-light d-flex align-items-center gap-2 opacity-85 hover-bright">
                             <i class="bi bi-whatsapp fs-5 text-success"></i> WhatsApp
                         </a>
-                        <a href="https://instagram.com/nama_kos" target="_blank"
+                        <a href="https://instagram.com/_fadhiiilll" target="_blank"
                             class="text-decoration-none text-light d-flex align-items-center gap-2 opacity-85 hover-bright">
                             <i class="bi bi-instagram fs-5 text-danger"></i> Instagram
                         </a>
