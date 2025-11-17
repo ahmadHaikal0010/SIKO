@@ -32,7 +32,7 @@ class GalleryService
                 $path = $image->store('galleries', 'public');
 
                 $galleryData[] = [
-                    'kost_id' => $data['kost_id'],
+                    'kost_id'    => $data['kost_id'],
                     'image_path' => $path,
                     'created_at' => now(),
                     'updated_at' => now(),
@@ -45,6 +45,10 @@ class GalleryService
 
     public function update(Gallery $gallery, array $data, $image = null): Gallery
     {
+        // Jangan ikutkan field 'image' mentah (UploadedFile) ke update()
+        unset($data['image']);
+
+        // Jika ada file baru -> ganti file lama + set image_path baru
         if ($image && $image->isValid()) {
             if ($gallery->image_path && Storage::disk('public')->exists($gallery->image_path)) {
                 Storage::disk('public')->delete($gallery->image_path);
@@ -52,9 +56,10 @@ class GalleryService
             $data['image_path'] = $image->store('galleries', 'public');
         }
 
+        // Update field lain (kost_id, title, dll)
         $gallery->update($data);
 
-        return $gallery;
+        return $gallery->fresh();
     }
 
     public function delete(Gallery $gallery)

@@ -10,10 +10,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsPenghuni;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Public\LandingController;
+use App\Http\Controllers\Public\KostPublicController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 // Tenant Routes
 Route::get('/dashboard', function () {
@@ -38,3 +37,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/gallery', GalleryController::class);
 });
+
+// Landing
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+
+// Detail kost (pakai ID; nanti bisa di-upgrade ke slug)
+Route::get('/kos/{kost}', [KostPublicController::class, 'show'])->name('kost.show');
+
+
