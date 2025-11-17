@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->enum('role', ['penghuni', 'admin'])->default('penghuni')->after('password');
+            $table->enum('status', ['active', 'inactive'])->default('active')->after('role');
+            $table->enum('is_accepted', ['pending', 'accepted', 'rejected'])->default('pending')->after('status');
         });
     }
 
