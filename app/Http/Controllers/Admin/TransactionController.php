@@ -7,7 +7,6 @@ use App\Http\Requests\Transaction\StoreTransactionRequest;
 use App\Http\Requests\Transaction\UpdateTransactionRequest;
 use App\Models\Transaction;
 use App\Services\TransactionService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
 class TransactionController extends Controller

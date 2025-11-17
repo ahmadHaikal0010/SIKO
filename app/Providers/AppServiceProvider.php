@@ -7,11 +7,13 @@ use App\Models\Kost;
 use App\Models\Room;
 use App\Models\Tenant;
 use App\Models\Transaction;
+use App\Models\User;
 use App\Policies\GalleryPolicy;
 use App\Policies\KostPolicy;
 use App\Policies\RoomPolicy;
 use App\Policies\TenantPolicy;
 use App\Policies\TransactionPolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -35,5 +37,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(Tenant::class, TenantPolicy::class);
         Gate::policies(Transaction::class, TransactionPolicy::class);
         Gate::policies(Gallery::class, GalleryPolicy::class);
+        Gate::policies(User::class, UserPolicy::class);
     }
 }

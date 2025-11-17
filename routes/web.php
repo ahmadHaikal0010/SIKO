@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KostController;
@@ -36,6 +37,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::resource('/tenant', TenantController::class);
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/gallery', GalleryController::class);
+    Route::resource('/account', AccountController::class);
+    Route::post('/account/{account}/accept', [AccountController::class, 'accept'])->name('account.accept');
+    Route::post('/account/{account}/reject', [AccountController::class, 'reject'])->name('account.reject');
 });
 
 // Landing
@@ -43,5 +47,3 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 // Detail kost (pakai ID; nanti bisa di-upgrade ke slug)
 Route::get('/kos/{kost}', [KostPublicController::class, 'show'])->name('kost.show');
-
-
