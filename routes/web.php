@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KostController;
+use App\Http\Controllers\Admin\RentalExtensionController;
 use App\Http\Controllers\Admin\RoomController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\TransactionController;
@@ -38,8 +39,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::resource('/transaction', TransactionController::class);
     Route::resource('/gallery', GalleryController::class);
     Route::resource('/account', AccountController::class);
+    Route::get('/rental_extension', [RentalExtensionController::class, 'index'])->name('rental_extension.index');
+    Route::get('/rental_extension/{rentalExtension}', [RentalExtensionController::class, 'show'])->name('rental_extension.show');
+    Route::delete('/rental_extension/{rentalExtension}', [RentalExtensionController::class, 'destroy'])->name('rental_extension.destroy');
     Route::post('/account/{account}/accept', [AccountController::class, 'accept'])->name('account.accept');
     Route::post('/account/{account}/reject', [AccountController::class, 'reject'])->name('account.reject');
+    Route::post('/rental_extension/{rentalExtension}/accept', [RentalExtensionController::class, 'accept'])->name('rental_extension.accept');
+    Route::post('/rental_extension/{rentalExtension}/reject', [RentalExtensionController::class, 'reject'])->name('rental_extension.reject');
 });
 
 // Landing
