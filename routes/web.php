@@ -14,7 +14,8 @@ use App\Http\Middleware\IsPenghuni;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\LandingController;
 use App\Http\Controllers\Public\KostPublicController;
-
+use App\Http\Controllers\Tenant\TenantDashboardController;
+use App\Http\Controllers\Tenant\TenantRentalExtensionController;
 
 // Tenant Routes
 Route::get('/dashboard', function () {
@@ -46,6 +47,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::post('/account/{account}/reject', [AccountController::class, 'reject'])->name('account.reject');
     Route::post('/rental_extension/{rentalExtension}/accept', [RentalExtensionController::class, 'accept'])->name('rental_extension.accept');
     Route::post('/rental_extension/{rentalExtension}/reject', [RentalExtensionController::class, 'reject'])->name('rental_extension.reject');
+});
+
+// Tenant Routes
+Route::prefix('tenant')->name('tenant.')->middleware(['auth', IsPenghuni::class])->group(function () {
+    Route::get('/dashboard', [TenantDashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/rental_extension', TenantRentalExtensionController::class);
 });
 
 // Landing

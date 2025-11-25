@@ -29,7 +29,8 @@ class RentalExtensionPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        // allow tenant (penghuni) or admin
+        return in_array($user->role, ['penghuni', 'admin']);
     }
 
     /**
@@ -37,7 +38,8 @@ class RentalExtensionPolicy
      */
     public function update(User $user, RentalExtension $rentalExtension): bool
     {
-        return false;
+        // allow tenant (penghuni) or admin
+        return in_array($user->role, ['penghuni', 'admin']);
     }
 
     /**
@@ -45,7 +47,7 @@ class RentalExtensionPolicy
      */
     public function delete(User $user, RentalExtension $rentalExtension): bool
     {
-        return $user->role === 'admin';
+        return $user->role === 'admin' || $user->role === 'tenant';
     }
 
     /**
