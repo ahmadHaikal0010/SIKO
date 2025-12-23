@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\ComplaintController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\KostController;
@@ -14,6 +15,7 @@ use App\Http\Middleware\IsPenghuni;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Public\LandingController;
 use App\Http\Controllers\Public\KostPublicController;
+use App\Http\Controllers\Tenant\TenantComplaintController;
 use App\Http\Controllers\Tenant\TenantDashboardController;
 use App\Http\Controllers\Tenant\TenantRentalExtensionController;
 
@@ -41,18 +43,23 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
     Route::resource('/gallery', GalleryController::class);
     Route::resource('/account', AccountController::class);
     Route::get('/rental_extension', [RentalExtensionController::class, 'index'])->name('rental_extension.index');
+    Route::get('/complaint', [ComplaintController::class, 'index'])->name('complaint.index');
     Route::get('/rental_extension/{rentalExtension}', [RentalExtensionController::class, 'show'])->name('rental_extension.show');
+    Route::get('/complaint/{complaint}', [ComplaintController::class, 'show'])->name('complaint.show');
     Route::delete('/rental_extension/{rentalExtension}', [RentalExtensionController::class, 'destroy'])->name('rental_extension.destroy');
-    Route::post('/account/{account}/accept', [AccountController::class, 'accept'])->name('account.accept');
-    Route::post('/account/{account}/reject', [AccountController::class, 'reject'])->name('account.reject');
-    Route::post('/rental_extension/{rentalExtension}/accept', [RentalExtensionController::class, 'accept'])->name('rental_extension.accept');
-    Route::post('/rental_extension/{rentalExtension}/reject', [RentalExtensionController::class, 'reject'])->name('rental_extension.reject');
+    Route::delete('/complaint/{complaint}', [ComplaintController::class, 'destroy'])->name('complaint.destroy');
+    Route::put('/account/{account}/accept', [AccountController::class, 'accept'])->name('account.accept');
+    Route::put('/account/{account}/reject', [AccountController::class, 'reject'])->name('account.reject');
+    Route::put('/rental_extension/{rentalExtension}/accept', [RentalExtensionController::class, 'accept'])->name('rental_extension.accept');
+    Route::put('/rental_extension/{rentalExtension}/reject', [RentalExtensionController::class, 'reject'])->name('rental_extension.reject');
+    Route::put('/complaint/{complaint}/response', [ComplaintController::class, 'response'])->name('complaint.response');
 });
 
 // Tenant Routes
 Route::prefix('tenant')->name('tenant.')->middleware(['auth', IsPenghuni::class])->group(function () {
     Route::get('/dashboard', [TenantDashboardController::class, 'index'])->name('dashboard');
     Route::resource('/rental_extension', TenantRentalExtensionController::class);
+    Route::resource('/complaint', TenantComplaintController::class);
 });
 
 // Landing
