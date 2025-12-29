@@ -50,7 +50,7 @@ class AccountController extends Controller
     public function show(User $account)
     {
         $account = $this->accountService->read($account);
-        return view('admin.account.show', compact('user'));
+        return view('admin.account.show', compact('account'));
     }
 
     /**
@@ -66,7 +66,13 @@ class AccountController extends Controller
      */
     public function update(UpdateAccountRequest $request, User $account)
     {
-        $this->accountService->update($account, $request->validated());
+        $data = $request->validated();
+        // jika password kosong atau null, jangan ubah password
+        if (array_key_exists('password', $data) && empty($data['password'])) {
+            unset($data['password']);
+        }
+
+        $this->accountService->update($account, $data);
         return redirect()->route('admin.account.index')->with('success', 'Data Akun berhasil diupdate.');
     }
 
@@ -97,4 +103,6 @@ class AccountController extends Controller
         $this->accountService->reject($account);
         return redirect()->route('admin.account.index')->with('success', 'Akun berhasil ditolak.');
     }
+
+
 }

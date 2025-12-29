@@ -32,19 +32,29 @@ class ComplaintController extends Controller
     public function destroy(Complaint $complaint)
     {
         Gate::authorize('delete', $complaint);
+
         $this->complaintService->destroy($complaint);
-        return redirect()->route('admin.complaint.index')->with('success', 'Aduan berhasil dihapus.');
+
+        return redirect()
+            ->route('admin.complaint.index')
+            ->with('success', 'Aduan berhasil dihapus.');
     }
 
     public function response(UpdateComplaintRequest $request, Complaint $complaint)
     {
         $this->complaintService->response($complaint, $request->validated());
-        return redirect()->route('admin.complaint.index')->with('success', 'Aduan berhasil ditanggapi.');
+
+        return redirect()
+            ->route('admin.complaint.index')
+            ->with('success', 'Aduan berhasil ditanggapi.');
     }
 
     public function closed(Complaint $complaint)
     {
         $this->complaintService->closed($complaint);
-        return redirect()->route('admin.complaint.index')->with('success', 'Aduan berhasil ditutup.');
+
+        return redirect()
+            ->route('admin.complaint.index')
+            ->with('success', 'Aduan berhasil ditutup.');
     }
 }

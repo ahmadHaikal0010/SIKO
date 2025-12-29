@@ -80,7 +80,13 @@
           @guest
             <li class="nav-item ms-2"><a href="{{ route('login') }}" class="btn-login">Login</a></li>
           @else
-            <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a></li>
+            @if(auth()->user()->role === 'admin')
+              <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a></li>
+            @elseif(in_array(auth()->user()->role, ['penghuni','tenant','user']))
+              <li class="nav-item ms-2"><a href="{{ route('tenant.dashboard') }}" class="btn-login">Dashboard</a></li>
+            @else
+              <li class="nav-item ms-2"><a href="{{ url('/') }}" class="btn-login">Dashboard</a></li>
+            @endif
           @endguest
         </ul>
       </div>

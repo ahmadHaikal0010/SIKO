@@ -11,7 +11,15 @@ class StoreTenantRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return Gate::allows('create', Tenant::class);
+        $user = $this->user();
+        // Admins may create tenants; a penghuni may create only if they don't already have a tenant record
+        if ($user->role === 'admin') {
+            return true;
+        }
+        if ($user->role === 'penghuni') {
+            return $user->tenant === null;
+        }
+        return false;
     }
 
     /**

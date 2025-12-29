@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title','Dashboard Admin • SIKO')</title>
+    <title>@yield('title','Dashboard Penghuni • SIKO')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -36,7 +36,7 @@
             <a href="{{ url('/') }}" class="landing-btn">
                 <i class="bi bi-arrow-left-circle"></i> Landing Page
             </a>
-            <a class="navbar-brand ms-2" href="{{ route('admin.dashboard') }}">SIKO Admin</a>
+            <a class="navbar-brand ms-2" href="{{ route('tenant.dashboard') }}">SIKO Penghuni</a>
         </div>
         <form action="{{ route('logout') }}" method="POST">
             @csrf

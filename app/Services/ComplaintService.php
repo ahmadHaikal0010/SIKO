@@ -23,7 +23,22 @@ class ComplaintService
 
     public function response(Complaint $complaint, array $data)
     {
-        return $complaint->update($data, ['status' => 'ditanggapi']);
+        // hanya terima field yang boleh diupdate dari form admin
+        $data = collect($data)->only(['status', 'tanggapan', 'tanggal_tanggapan'])->toArray();
+
+        // kalau ada tanggapan tapi status belum diisi, set otomatis
+        if (!empty($data['tanggapan']) && empty($data['status'])) {
+            $data['status'] = 'ditanggapi';
+        }
+
+        // kalau ada tanggapan tapi tanggal belum diisi, set hari ini
+        if (!empty($data['tanggapan']) && empty($data['tanggal_tanggapan'])) {
+            $data['tanggal_tanggapan'] = now()->toDateString();
+        }
+
+        $complaint->update($data);
+
+        return $complaint;
     }
 
     public function closed(Complaint $complaint)

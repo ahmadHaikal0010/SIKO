@@ -27,12 +27,12 @@ class DatabaseSeeder extends Seeder
         //     'role' => 'penghuni',
         // ]);
 
-        // User::create([
-        //     'name' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('123'),
-        //     'role' => 'admin',
-        // ]);
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('123'),
+            'role' => 'admin',
+        ]);
 
         $this->call([
             KostsSeeder::class,

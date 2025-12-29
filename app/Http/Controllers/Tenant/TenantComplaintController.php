@@ -41,7 +41,7 @@ class TenantComplaintController extends Controller
      */
     public function store(StoreTenantComplaintRequest $request)
     {
-        $this->tenantComplaintService->store($request->validated());
+        $this->tenantComplaintService->store($request);
         return redirect()->route('tenant.complaint.index')->with('success', 'Aduan berhasil diajukan.');
     }
 
@@ -67,7 +67,7 @@ class TenantComplaintController extends Controller
      */
     public function update(UpdateTenantComplaintRequest $request, Complaint $complaint)
     {
-        $this->tenantComplaintService->update($complaint, $request->validated());
+        $this->tenantComplaintService->update($complaint, $request->validated(), $request);
         return redirect()->route('tenant.complaint.index')->with('success', 'Aduan berhasil diperbarui.');
     }
 

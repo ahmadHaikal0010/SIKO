@@ -26,7 +26,11 @@ class UpdateAccountRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'exists:users,email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // password optional when admin edits; must be confirmed when present
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            // allow admin to set account status
+            'status' => ['nullable', 'in:active,disabled'],
+            'role' => ['nullable', 'in:admin,penghuni,user'],
         ];
     }
 }

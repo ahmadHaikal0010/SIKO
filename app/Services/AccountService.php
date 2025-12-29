@@ -8,7 +8,8 @@ class AccountService
 {
     public function getAll()
     {
-        return User::with('tenant')->where('role', 'user')->latest()->paginate(10);
+        // Tampilkan akun penghuni dan user (kecuali admin)
+        return User::with('tenant')->whereIn('role', ['penghuni', 'user'])->latest()->paginate(10);
     }
 
     public function store(array $data)
