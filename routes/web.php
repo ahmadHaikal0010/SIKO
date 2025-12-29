@@ -18,11 +18,7 @@ use App\Http\Controllers\Public\KostPublicController;
 use App\Http\Controllers\Tenant\TenantComplaintController;
 use App\Http\Controllers\Tenant\TenantDashboardController;
 use App\Http\Controllers\Tenant\TenantRentalExtensionController;
-
-// Tenant Routes
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified', IsPenghuni::class])->name('dashboard');
+use App\Http\Middleware\EnsureAccountIsAccepted;
 
 // Authenticated User Routes
 Route::middleware('auth')->group(function () {
@@ -34,7 +30,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class, EnsureAccountIsAccepted::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/kost', KostController::class);
     Route::resource('/room', RoomController::class);
@@ -56,7 +52,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', IsAdmin::class])->gr
 });
 
 // Tenant Routes
-Route::prefix('tenant')->name('tenant.')->middleware(['auth', IsPenghuni::class])->group(function () {
+Route::prefix('tenant')->name('tenant.')->middleware(['auth', IsPenghuni::class, EnsureAccountIsAccepted::class])->group(function () {
     Route::get('/dashboard', [TenantDashboardController::class, 'index'])->name('dashboard');
     Route::resource('/rental_extension', TenantRentalExtensionController::class);
     Route::resource('/complaint', TenantComplaintController::class);
