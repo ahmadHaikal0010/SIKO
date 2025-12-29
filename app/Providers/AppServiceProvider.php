@@ -10,6 +10,7 @@ use App\Models\Room;
 use App\Models\Tenant;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Observers\TransactionObserver;
 use App\Policies\ComplaintPolicy;
 use App\Policies\GalleryPolicy;
 use App\Policies\KostPolicy;
@@ -44,5 +45,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(User::class, UserPolicy::class);
         Gate::policies(RentalExtension::class, RentalExtensionPolicy::class);
         Gate::policies(Complaint::class, ComplaintPolicy::class);
+        Transaction::observe(TransactionObserver::class);
     }
 }
