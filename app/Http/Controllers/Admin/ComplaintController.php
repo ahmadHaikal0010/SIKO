@@ -57,4 +57,11 @@ class ComplaintController extends Controller
             ->route('admin.complaint.index')
             ->with('success', 'Aduan berhasil ditutup.');
     }
+
+    public function responseForm(Complaint $complaint)
+    {
+        $complaint = $this->complaintService->load($complaint);
+        return view('admin.complaint.response', compact('complaint'));
+    }
+
 }

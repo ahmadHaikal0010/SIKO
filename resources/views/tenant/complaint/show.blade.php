@@ -13,7 +13,7 @@
                 </div>
                 <div>
                     @if($authUser && $authUser->can('update', $complaint))
-                        <a href="{{ route('tenant.complaint.edit', $complaint->id) }}" class="btn btn-secondary">Ubah</a>
+                        {{-- <a href="{{ route('tenant.complaint.edit', $complaint->id) }}" class="btn btn-secondary">Ubah</a> --}}
                     @endif
                 </div>
             </div>

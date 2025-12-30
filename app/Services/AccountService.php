@@ -9,7 +9,11 @@ class AccountService
     public function getAll()
     {
         // Tampilkan akun penghuni dan user (kecuali admin)
-        return User::with('tenant')->whereIn('role', ['penghuni', 'user'])->latest()->paginate(10);
+        return User::with('tenant')
+            ->whereIn('role', ['penghuni', 'user'])
+            ->when(request('pending'), fn($q) => $q->where('is_accepted', 'pending'))
+            ->latest()
+            ->paginate(10);
     }
 
     public function store(array $data)

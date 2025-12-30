@@ -11,7 +11,7 @@
                     <a href="{{ route('tenant.rental_extension.index') }}" class="btn btn-outline-secondary">Kembali</a>
                 </div>
                 <div>
-                    <a href="{{ route('tenant.rental_extension.edit', $rentalExtension->id) }}" class="btn btn-secondary">Ubah</a>
+                    {{-- <a href="{{ route('tenant.rental_extension.edit', $rentalExtension->id) }}" class="btn btn-secondary">Ubah</a> --}}
                 </div>
             </div>
 

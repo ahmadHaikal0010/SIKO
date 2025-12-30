@@ -28,7 +28,13 @@
                                     <td>{{ ucfirst($c->status ?? 'menunggu') }}</td>
                                     <td>{{ $c->created_at->format('d M Y') }}</td>
                                     <td>
-                                        <a href="{{ route('admin.complaint.show', $c->id) }}" class="btn btn-sm btn-outline-primary">Lihat</a>
+                                        <a href="{{ route('admin.complaint.show', $c->id) }}" class="btn btn-sm btn-outline-primary">
+                                            Lihat
+                                        </a>
+
+                                        <a href="{{ route('admin.complaint.response.edit', $c->id) }}" class="btn btn-sm btn-primary">
+                                            Tanggapi
+                                        </a>
 
                                         <form action="{{ route('admin.complaint.destroy', $c->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus aduan ini?')">
                                             @csrf

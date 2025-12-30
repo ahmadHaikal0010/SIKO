@@ -47,39 +47,6 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.complaint.response', $complaint->id) }}" method="POST">
-                @csrf
-                @method('PUT')
-
-                <div class="mb-3">
-                    <label class="form-label">Status</label>
-                    <select name="status" class="form-select">
-                        <option value="menunggu" {{ ($complaint->status ?? '') === 'menunggu' ? 'selected' : '' }}>Menunggu</option>
-                        <option value="ditanggapi" {{ ($complaint->status ?? '') === 'ditanggapi' ? 'selected' : '' }}>Ditanggapi</option>
-                        <option value="selesai" {{ ($complaint->status ?? '') === 'selesai' ? 'selected' : '' }}>Selesai</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Tanggapan</label>
-                    <textarea name="tanggapan" class="form-control" rows="4">{{ old('tanggapan', $complaint->tanggapan) }}</textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Tanggal Tanggapan</label>
-                    <input type="date" name="tanggal_tanggapan" class="form-control"
-                        value="{{ old('tanggal_tanggapan', $complaint->tanggal_tanggapan
-                            ? \Carbon\Carbon::parse($complaint->tanggal_tanggapan)->toDateString()
-                            : now()->toDateString()
-                        ) }}">
-                </div>
-
-                <div class="d-flex gap-2">
-                    <a href="{{ route('admin.complaint.index') }}" class="btn btn-outline-secondary">Kembali</a>
-                    <button class="btn btn-primary" type="submit">Simpan Tanggapan</button>
-                </div>
-            </form>
-
             <div class="mt-3 text-end">
                 <form action="{{ route('admin.complaint.destroy', $complaint->id) }}" method="POST" class="m-0" onsubmit="return confirm('Hapus aduan ini?')">
                     @csrf

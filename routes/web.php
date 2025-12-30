@@ -57,6 +57,14 @@ Route::prefix('admin')
         Route::get('/complaint', [ComplaintController::class, 'index'])->name('complaint.index');
         Route::get('/complaint/{complaint}', [ComplaintController::class, 'show'])->name('complaint.show');
         Route::delete('/complaint/{complaint}', [ComplaintController::class, 'destroy'])->name('complaint.destroy');
+                // halaman khusus form tanggapan
+        Route::get('/complaint/{complaint}/response', [ComplaintController::class, 'responseForm'])
+            ->name('complaint.response.edit');
+
+        // aksi simpan tanggapan (sudah ada)
+        Route::put('/complaint/{complaint}/response', [ComplaintController::class, 'response'])
+            ->name('complaint.response');
+
 
         // Admin response to complaint
         Route::put('/complaint/{complaint}/response', [ComplaintController::class, 'response'])->name('complaint.response');

@@ -34,7 +34,7 @@
                                     <td>{{ $r->created_at->format('d M Y') }}</td>
                                     <td>
                                         <a href="{{ route('tenant.rental_extension.show', $r->id) }}" class="btn btn-sm btn-outline-primary">Lihat</a>
-                                        <a href="{{ route('tenant.rental_extension.edit', $r->id) }}" class="btn btn-sm btn-outline-secondary">Ubah</a>
+                                        {{-- <a href="{{ route('tenant.rental_extension.edit', $r->id) }}" class="btn btn-sm btn-outline-secondary">Ubah</a> --}}
                                         <form action="{{ route('tenant.rental_extension.destroy', $r->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus permohonan ini?')">
                                             @csrf
                                             @method('DELETE')

@@ -37,7 +37,7 @@
                                     <td>{{ $c->created_at->format('d M Y') }}</td>
                                     <td>
                                         <a href="{{ route('tenant.complaint.show', $c->id) }}" class="btn btn-sm btn-outline-primary">Lihat</a>
-                                        <a href="{{ route('tenant.complaint.edit', $c->id) }}" class="btn btn-sm btn-outline-secondary">Ubah</a>
+                                        
                                         <form action="{{ route('tenant.complaint.destroy', $c->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Hapus aduan ini?')">
                                             @csrf
                                             @method('DELETE')
