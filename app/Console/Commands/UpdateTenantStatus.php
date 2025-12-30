@@ -34,7 +34,10 @@ class UpdateTenantStatus extends Command
         // Process tenants in chunks to avoid memory spikes
         $query = Tenant::with('user')
             ->where('tanggal_keluar', '<', $today)
-            ->where('status', 'active');
+            ->where('status', 'active')
+            ->whereHas('user', function ($q) {
+                $q->where('role', 'penghuni');
+            });
 
         $found = false;
 
