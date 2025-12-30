@@ -47,4 +47,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(Complaint::class, ComplaintPolicy::class);
         Transaction::observe(TransactionObserver::class);
     }
+
+    
 }
