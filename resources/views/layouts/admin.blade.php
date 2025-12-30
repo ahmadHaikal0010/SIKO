@@ -46,6 +46,7 @@
 
     {{-- Konten halaman --}}
     <div class="container my-5 fade-in">
+        @include('partials.flash')
         @yield('content')
     </div>
 

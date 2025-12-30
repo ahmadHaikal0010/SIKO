@@ -26,13 +26,17 @@
       <i class="bi bi-images side-ic"></i><span>Kelola Galeri Kost</span>
     </a>
 
-    <a style="--i:6" href="" class="side-item ">
+    <a style="--i:6" href="{{ route('admin.rental_extension.index') }}" class="side-item {{ $active('admin.rental_extension.*') }}">
       <i class="bi bi-arrow-repeat side-ic"></i><span>Perpanjangan Sewa</span>
     </a>
 
-    {{-- Akun Penghuni di luar prefix admin --}}
-    <a style="--i:7" href="{{ route('profile.edit') }}" class="side-item {{ request()->is('profile') ? 'is-active' : '' }}">
+    {{-- Akun Penghuni (admin) --}}
+    <a style="--i:7" href="{{ route('admin.account.index') }}" class="side-item {{ $active('admin.account.*') }}">
       <i class="bi bi-person-lines-fill side-ic"></i><span>Kelola Akun Penghuni</span>
+    </a>
+
+    <a style="--i:8" href="{{ route('admin.complaint.index') }}" class="side-item {{ $active('admin.complaint.*') }}">
+      <i class="bi bi-chat-dots side-ic"></i><span>Kelola Keluhan</span>
     </a>
 
     <a style="--i:8" href="{{ route('admin.transaction.index') }}" class="side-item {{ $active('admin.transaction.*') }}">

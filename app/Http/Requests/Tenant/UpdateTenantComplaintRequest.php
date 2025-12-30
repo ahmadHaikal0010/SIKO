@@ -31,6 +31,7 @@ class UpdateTenantComplaintRequest extends FormRequest
             'status' => ['required', 'in:menunggu,ditanggapi,selesai'],
             'tanggapan' => ['nullable', 'string'],
             'tanggal_tanggapan' => ['nullable', 'date'],
+            'attachment' => ['nullable', 'file', 'max:10240'],
         ];
     }
 }

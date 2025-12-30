@@ -24,6 +24,14 @@ class TenantService
                 });
             })
             ->when(request('status'), fn($q, $st) => $q->where('status', $st))
+            // optional filter: expiring tenants within next 14 days
+            ->when(request('expiring'), function($q) {
+                $today = \Illuminate\Support\Carbon::now()->toDateString();
+                $inTwoWeeks = \Illuminate\Support\Carbon::now()->addDays(14)->toDateString();
+                $q->whereNotNull('tanggal_keluar')
+                  ->whereBetween('tanggal_keluar', [$today, $inTwoWeeks])
+                  ->where('status', '!=', 'finished');
+            })
             ->latest()
             ->paginate(10);
     }

@@ -37,7 +37,8 @@ class TenantPolicy
      */
     public function update(User $user, Tenant $tenant): bool
     {
-        return $user->role === 'admin';
+        // Admin can update any tenant; penghuni can update their own record
+        return $user->role === 'admin' || ($user->role === 'penghuni' && $tenant->user_id === $user->id);
     }
 
     /**

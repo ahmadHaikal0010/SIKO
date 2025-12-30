@@ -26,6 +26,8 @@
 
         /* Navbar */
         .navbar {
+            position: relative;
+            z-index: 1030;
             background: #fff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 16px 0;
@@ -119,6 +121,30 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
+        /* Ensure carousel positions correctly and controls are always clickable */
+        #heroRoomCarousel{ position: relative; }
+        .carousel-control-prev,
+        .carousel-control-next{
+            width:44px;
+            height:44px;
+            background: rgba(0,0,0,0.35);
+            border-radius:50%;
+            top:50%;
+            transform: translateY(-50%);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            z-index:6;
+            pointer-events:auto;
+            border:none;
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon{
+            filter: invert(1);
+            width:18px;height:18px;
+            background-size:100% 100%;
+        }
+
         .room-img {
             width: 100%;
             height: 220px;
@@ -196,8 +222,13 @@
                     <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Testimonial</a></li>
                     @auth
-                        <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a>
-                        </li>
+                        @if(auth()->user()->role === 'admin')
+                            <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a></li>
+                        @elseif(in_array(auth()->user()->role, ['penghuni','tenant','user']))
+                            <li class="nav-item ms-2"><a href="{{ route('tenant.dashboard') }}" class="btn-login">Dashboard</a></li>
+                        @else
+                            <li class="nav-item ms-2"><a href="{{ url('/') }}" class="btn-login">Dashboard</a></li>
+                        @endif
                     @else
                         <li class="nav-item ms-2"><a href="{{ route('login') }}" class="btn-login">Login</a></li>
                     @endauth
@@ -289,20 +320,7 @@
     </div>
 </section>
 
-                        <!-- Carousel controls -->
-                        <button class="carousel-control-prev" type="button" data-bs-target="#heroRoomCarousel"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#heroRoomCarousel"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Facilities -->
     <section class="facilities-section container">
