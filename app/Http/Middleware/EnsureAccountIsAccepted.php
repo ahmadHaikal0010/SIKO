@@ -27,6 +27,12 @@ class EnsureAccountIsAccepted
 
         // Only enforce acceptance flow for penghuni (regular tenant applicants)
         if ($user->role === 'penghuni') {
+            // jika akun non-aktif, logout user dan redirect ke login dengan pesan
+            if (($user->status ?? null) === 'inactive') {
+                Auth::logout();
+                return redirect()->route('login')->withErrors(['account_inactive' => 'Your account has been disabled. Please contact support.']);
+            }
+
             // If explicitly rejected, show rejected view first
             if (($user->is_accepted ?? null) === 'rejected') {
                 return response()->view('auth.rejected-acceptance');
