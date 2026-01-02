@@ -20,6 +20,7 @@ use App\Policies\TenantPolicy;
 use App\Policies\TransactionPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
