@@ -46,5 +46,10 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(RentalExtension::class, RentalExtensionPolicy::class);
         Gate::policies(Complaint::class, ComplaintPolicy::class);
         Transaction::observe(TransactionObserver::class);
+
+        // Paksa semua URL menggunakan HTTPS jika berada di Railway (Production)
+        if (config('app.env') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
