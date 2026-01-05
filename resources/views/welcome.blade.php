@@ -419,7 +419,7 @@
                 <!-- Alamat -->
                 <div class="col-md-4">
                     <h6 class="fw-semibold text-white mb-3">Alamat</h6>
-                    <p class="small mb-1 text-light opacity-85">Jl. Mawar No. 12, Padang</p>
+                    <p class="small mb-1 text-light opacity-85">Alamat Alai limau manis no.24 dekat SMAKPA, Padang</p>
                     <p class="small mb-1 text-light opacity-85">Dekat Universitas Andalas</p>
                     <p class="small mb-0 text-light opacity-85">Buka setiap hari 08.00 – 21.00</p>
                 </div>
