@@ -95,3 +95,11 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 // Public Kost Detail
 Route::get('/kos/{kost}', [KostPublicController::class, 'show'])->name('kost.show');
+
+Route::get('/about-us', function () {
+    return view('about-us');
+})->name('about');
+
+Route::get('/location', function () {
+    return view('location');
+})->name('location');
