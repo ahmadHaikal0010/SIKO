@@ -217,10 +217,9 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navmenu">
                 <ul class="navbar-nav align-items-center">
-                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Location</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Testimonial</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="{{ route('location') }}" class="nav-link active">Location</a></li>
+                    <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About Us</a></li>
                     @auth
                         @if(auth()->user()->role === 'admin')
                             <li class="nav-item ms-2"><a href="{{ route('admin.dashboard') }}" class="btn-login">Dashboard</a></li>
