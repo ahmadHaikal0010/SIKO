@@ -18,6 +18,10 @@
             --dark: #1a1a1a;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
             background: var(--light-gray);
@@ -122,27 +126,32 @@
         }
 
         /* Ensure carousel positions correctly and controls are always clickable */
-        #heroRoomCarousel{ position: relative; }
-        .carousel-control-prev,
-        .carousel-control-next{
-            width:44px;
-            height:44px;
-            background: rgba(0,0,0,0.35);
-            border-radius:50%;
-            top:50%;
-            transform: translateY(-50%);
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            z-index:6;
-            pointer-events:auto;
-            border:none;
+        #heroRoomCarousel {
+            position: relative;
         }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 6;
+            pointer-events: auto;
+            border: none;
+        }
+
         .carousel-control-prev-icon,
-        .carousel-control-next-icon{
+        .carousel-control-next-icon {
             filter: invert(1);
-            width:18px;height:18px;
-            background-size:100% 100%;
+            width: 18px;
+            height: 18px;
+            background-size: 100% 100%;
         }
 
         .room-img {
@@ -236,90 +245,90 @@
         </div>
     </nav>
 
-   <!-- Hero Section with Carousel -->
-<section class="hero-section">
-    <div class="container">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-6">
-                <span class="badge bg-white text-dark mb-2" style="font-size:1em;">The Best Online Kos in The
-                    World!</span>
-                <h1 class="hero-title">Kost Eksklusif dengan<br>Fasilitas Paling Lengkap di Padang</h1>
-                <p class="hero-desc">
-                    Temukan pengalaman tinggal yang nyaman dan eksklusif dengan fasilitas modern serta lingkungan
-                    yang aman dan strategis.
-                </p>
-                <div class="d-flex gap-3 flex-wrap">
-                    <a href="#" class="btn-primary-custom">Booking Now</a>
-                    <a href="#" class="btn-outline-custom">View All Kamar</a>
+    <!-- Hero Section with Carousel -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-4">
+                <div class="col-lg-6">
+                    <span class="badge bg-white text-dark mb-2" style="font-size:1em;">The Best Online Kos in The
+                        World!</span>
+                    <h1 class="hero-title">Kost Eksklusif dengan<br>Fasilitas Paling Lengkap di Padang</h1>
+                    <p class="hero-desc">
+                        Temukan pengalaman tinggal yang nyaman dan eksklusif dengan fasilitas modern serta lingkungan
+                        yang aman dan strategis.
+                    </p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="https://wa.me/6282169120855?text=Halo%20SIKO,%20saya%20ingin%20booking%20kamar%20kost.%20Mohon%20informasinya."
+                           target="_blank"
+                           class="btn-primary-custom">Booking Now</a>
+                        <a href="#kos-mitra" class="btn-outline-custom">View All Kamar</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-lg-6">
-                <div id="heroRoomCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        @php
-                            // Ambil galeri dari kost pertama atau semua kost
-                            $allGalleries = \App\Models\Gallery::limit(20)->get();
-                            $chunked = $allGalleries->chunk(2); // Bagi 2 foto per slide
-                        @endphp
+                <div class="col-lg-6">
+                    <div id="heroRoomCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @php
+                                // Ambil galeri dari kost pertama atau semua kost
+                                $allGalleries = \App\Models\Gallery::limit(20)->get();
+                                $chunked = $allGalleries->chunk(2); // Bagi 2 foto per slide
+                            @endphp
 
-                        @forelse ($chunked as $index => $pair)
-                            <div class="carousel-item @if($index === 0) active @endif">
-                                <div class="row g-3">
-                                    @foreach ($pair as $gallery)
+                            @forelse ($chunked as $index => $pair)
+                                <div class="carousel-item @if($index === 0) active @endif">
+                                    <div class="row g-3">
+                                        @foreach ($pair as $gallery)
+                                            <div class="col-md-6">
+                                                <div class="room-card">
+                                                    <img src="{{ $gallery->image_url }}"
+                                                         class="room-img"
+                                                         alt="{{ $gallery->title ?? 'Galeri' }}"
+                                                         style="object-fit: cover;">
+                                                    @isset($gallery->title)
+                                                        <div class="room-body">
+                                                            <div class="room-title">{{ $gallery->title }}</div>
+                                                        </div>
+                                                    @endisset
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @empty
+                                {{-- Fallback jika tidak ada galeri --}}
+                                <div class="carousel-item active">
+                                    <div class="row g-3">
                                         <div class="col-md-6">
                                             <div class="room-card">
-                                                <img src="{{ $gallery->image_url }}"
-                                                     class="room-img"
-                                                     alt="{{ $gallery->title ?? 'Galeri' }}"
-                                                     style="object-fit: cover;">
-                                                @isset($gallery->title)
-                                                    <div class="room-body">
-                                                        <div class="room-title">{{ $gallery->title }}</div>
-                                                    </div>
-                                                @endisset
+                                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
+                                                    class="room-img" alt="">
                                             </div>
                                         </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        @empty
-                            {{-- Fallback jika tidak ada galeri --}}
-                            <div class="carousel-item active">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="room-card">
-                                            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
-                                                class="room-img" alt="">
+                                        <div class="col-md-6">
+                                            <div class="room-card">
+                                                <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
+                                                    class="room-img" alt="">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforelse
-                    </div>
+                            @endforelse
+                        </div>
 
-                    <!-- Carousel controls -->
-                    <button class="carousel-control-prev" type="button" data-bs-target="#heroRoomCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#heroRoomCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
+                        <!-- Carousel controls -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#heroRoomCarousel"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#heroRoomCarousel"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-
+    </section>
 
     <!-- Facilities -->
     <section class="facilities-section container">
@@ -343,32 +352,31 @@
     </section>
 
     <!-- Rooms -->
-    <section class="container mt-5">
-    <div class="text-center mb-4">
-        <h3 class="fw-bold">KOS Mitra</h3>
-        <p class="text-muted">Temukan tempat kos terbaik dan terdekatmu </p>
-    </div>
-
-    <div class="row gy-4">
-        @foreach ($kosts as $k)
-        <div class="col-12 col-md-4">
-            <a href="{{ route('kost.show', $k->id) }}" class="text-decoration-none text-dark">
-            <div class="room-card">
-                <img src="{{ $k->cover_url }}" class="room-img" alt="Cover {{ $k->nama_kost }}">
-                <div class="room-body">
-                <div class="room-title">{{ $k->nama_kost }}</div>
-                <div class="text-muted small">{{ \Illuminate\Support\Str::limit($k->alamat ?? '-', 60) }}</div>
-                @if(!empty($k->harga_kost))
-                    <div class="room-price">Rp {{ number_format($k->harga_kost,0,',','.') }} / tahun</div>
-                @endif
-                </div>
-            </div>
-            </a>
+    <section class="container mt-5" id="kos-mitra">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold">KOS Mitra</h3>
+            <p class="text-muted">Temukan tempat kos terbaik dan terdekatmu </p>
         </div>
-        @endforeach
-    </div>
-    </section>
 
+        <div class="row gy-4">
+            @foreach ($kosts as $k)
+            <div class="col-12 col-md-4">
+                <a href="{{ route('kost.show', $k->id) }}" class="text-decoration-none text-dark">
+                    <div class="room-card">
+                        <img src="{{ $k->cover_url }}" class="room-img" alt="Cover {{ $k->nama_kost }}">
+                        <div class="room-body">
+                            <div class="room-title">{{ $k->nama_kost }}</div>
+                            <div class="text-muted small">{{ \Illuminate\Support\Str::limit($k->alamat ?? '-', 60) }}</div>
+                            @if(!empty($k->harga_kost))
+                                <div class="room-price">Rp {{ number_format($k->harga_kost,0,',','.') }} / tahun</div>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer text-light position-relative"
@@ -437,7 +445,6 @@
             transition: all .3s ease;
         }
     </style>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
