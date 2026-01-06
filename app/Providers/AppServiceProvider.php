@@ -19,6 +19,7 @@ use App\Policies\RoomPolicy;
 use App\Policies\TenantPolicy;
 use App\Policies\TransactionPolicy;
 use App\Policies\UserPolicy;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -38,6 +39,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Pagination pakai Bootstrap 5
+        Paginator::useBootstrapFive();
+
         Gate::policies(Kost::class, KostPolicy::class);
         Gate::policies(Room::class, RoomPolicy::class);
         Gate::policies(Tenant::class, TenantPolicy::class);
@@ -46,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policies(User::class, UserPolicy::class);
         Gate::policies(RentalExtension::class, RentalExtensionPolicy::class);
         Gate::policies(Complaint::class, ComplaintPolicy::class);
+
         Transaction::observe(TransactionObserver::class);
 
         // Paksa semua URL menggunakan HTTPS jika berada di Railway (Production)
@@ -53,6 +58,4 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
     }
-
-    
 }
