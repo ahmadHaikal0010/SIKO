@@ -24,7 +24,18 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = $this->roomService->getAll();
-        return view('admin.room.index', compact('rooms'));
+
+        // Total keseluruhan (bukan per halaman)
+        $totalRooms     = Room::count();
+        $totalAvailable = Room::where('status', 'available')->count();
+        $totalOccupied  = Room::where('status', 'occupied')->count();
+
+        return view('admin.room.index', compact(
+            'rooms',
+            'totalRooms',
+            'totalAvailable',
+            'totalOccupied'
+        ));
     }
 
     /**
